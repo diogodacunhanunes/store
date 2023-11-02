@@ -17,17 +17,19 @@ export default function NavBar() {
         <Image
           src={logo}
           alt="logo"
-          className="w-[50px] h-[32px]"
+          className="[@media(max-width:1028px)]:w-[35px] w-[50px]"
           priority={true}
-        />{" "}
-        <span className="font-bold leading-none text-3xl">Furnitore</span>
+        />
+        <span className="font-bold leading-none text-3xl [@media(max-width:1028px)]:text-xl">
+          Furnitore
+        </span>
       </div>
-      <div className="flex items-end gap-24">
+      <div className="flex items-end gap-24 [@media(max-width:1028px)]:text-[12px] [@media(max-width:1028px)]:gap-12 [@media(max-width:640px)]:hidden">
         <Link
           href={"/"}
           className="transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F]"
         >
-          <span className="font-poppins">Home</span>
+          <span className="font-poppins ">Home</span>
         </Link>
 
         <Link
@@ -49,11 +51,27 @@ export default function NavBar() {
           Contact
         </Link>
       </div>
-      <div className="flex items-center gap-12">
-        <Image src={user} alt="user" priority={true} />
-        <Image src={search} alt="search" priority={true} />
-        <Image src={heart} alt="heart" priority={true} />
-        <Image src={shopping_cart} alt="shopping_cart" priority={true} />
+      <div className="flex items-center gap-12 [@media(max-width:1028px)]:gap-4">
+        <Image
+          src={user}
+          alt="user"
+          className="[@media(max-width:1028px)]:w-[18px]"
+        />
+        <Image
+          src={search}
+          alt="search"
+          className="[@media(max-width:1028px)]:w-[18px]"
+        />
+        <Image
+          src={heart}
+          alt="heart"
+          className="[@media(max-width:1028px)]:w-[18px]"
+        />
+        <Image
+          src={shopping_cart}
+          alt="shopping_cart"
+          className="[@media(max-width:1028px)]:w-[18px]"
+        />
       </div>
     </div>
   );

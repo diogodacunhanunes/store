@@ -15,7 +15,7 @@ export default function BrowseRange() {
         <Image
           src={image}
           alt="living_browse"
-          className="rounded-lg"
+          className="rounded-lg w-96 md:w-72"
           priority={true}
         />
         <span className="text-[16px] font-semibold">{text}</span>
