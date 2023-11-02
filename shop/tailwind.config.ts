@@ -18,7 +18,8 @@ const config: Config = {
         mono: ["var(--font-montserrat)"],
       },
       screens: {
-        sm: { min: "390px", max: "775px" },
+        mob: { max: "391px" },
+        sm: { min: "392px", max: "775px" },
         md: { min: "776px", max: "1201px" },
         lg: { min: "1202px", max: "1539px" },
         xl: { min: "1540px" },

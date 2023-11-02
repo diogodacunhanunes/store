@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 //images
@@ -9,18 +10,30 @@ import shopping_cart from "@/public/images/icons/icon_shopping_cart.svg";
 
 import Image from "next/image";
 import Link from "next/link";
+import { Sling as Hamburger } from "hamburger-react";
 
-export default function NavBar() {
+type Props = {
+  setToggledHamburguer: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function NavBar({ setToggledHamburguer }: Props) {
   return (
-    <div className="flex justify-between mx-10 py-5 font-montesrrat">
-      <div className="flex items-end gap-1">
+    <div className="flex justify-between px-5 py-5 z-50 font-montesrrat sticky top-0 bg-white shadow-md">
+      <div className="hidden mob:inline">
+        <Hamburger
+          size={20}
+          color="#B88E2F"
+          onToggle={() => setToggledHamburguer((prev) => !prev)}
+        />
+      </div>
+      <div className="flex items-center gap-2">
         <Image
           src={logo}
           alt="logo"
           className="[@media(max-width:1028px)]:w-[35px] w-[50px]"
           priority={true}
         />
-        <span className="font-bold leading-none text-3xl [@media(max-width:1028px)]:text-xl">
+        <span className="font-bold text-3xl [@media(max-width:1028px)]:text-xl">
           Furnitore
         </span>
       </div>

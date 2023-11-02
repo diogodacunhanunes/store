@@ -20,7 +20,7 @@ export default function OurProducts() {
   return (
     <div className="flex flex-col w-full py-10">
       <h1 className="text-[32px] font-bold self-center pb-12">Our Products</h1>
-      <div className="container px-[10%] self-center grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 [@media(max-width:775px)]:grid-cols-1 ">
+      <div className="container px-[10%] self-center grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 [@media(max-width:775px)]:grid-cols-1 mob:px-[18%]">
         {products?.map((prod: ProductsType) => {
           return (
             <div

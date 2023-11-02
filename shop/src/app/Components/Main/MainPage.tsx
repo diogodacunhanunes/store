@@ -4,15 +4,22 @@ import BrowseRange from "./BrowseRange";
 import OurProducts from "./OurProducts";
 import ShareHashtag from "./ShareHashtag";
 import Footer from "./Footer";
+import SidePanel from "./SidePanel";
 
-export default function MainPage() {
+type Props = {
+  toggledHamburguer: boolean;
+};
+export default function MainPage({ toggledHamburguer }: Props) {
   return (
-    <div className="flex flex-col">
-      <Banner />
-      <BrowseRange />
-      <OurProducts />
-      <ShareHashtag />
-      <Footer />
-    </div>
+    <>
+      <SidePanel toggledHamburguer={toggledHamburguer} />
+      <div className="flex flex-col">
+        <Banner />
+        <BrowseRange />
+        <OurProducts />
+        <ShareHashtag />
+        <Footer />
+      </div>
+    </>
   );
 }
