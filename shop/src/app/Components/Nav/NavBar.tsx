@@ -1,30 +1,22 @@
-"use client";
-import React from "react";
-
 //images
 import logo from "@/public/images/logo/Meubel House_Logos-05.svg";
 import heart from "@/public/images/icons/icon_heart.svg";
 import search from "@/public/images/icons/icon_search.svg";
-import user from "@/public/images/icons/icon_user.svg";
 import shopping_cart from "@/public/images/icons/icon_shopping_cart.svg";
 
+//next components
 import Image from "next/image";
 import Link from "next/link";
-import { Sling as Hamburger } from "hamburger-react";
 
-type Props = {
-  setToggledHamburguer: React.Dispatch<React.SetStateAction<boolean>>;
-};
+//components
+import HamburguerMenu from "./HamburguerMenu";
+import SessionLogger from "./SessionLogger";
 
-export default function NavBar({ setToggledHamburguer }: Props) {
+export default function NavBar({ pageProps }: any) {
   return (
     <div className="flex justify-between px-5 py-5 z-50 font-montesrrat sticky top-0 bg-white shadow-md">
       <div className="hidden mob:inline">
-        <Hamburger
-          size={20}
-          color="#B88E2F"
-          onToggle={() => setToggledHamburguer((prev) => !prev)}
-        />
+        <HamburguerMenu size={20} color="#B88E2F" />
       </div>
       <div className="flex items-center gap-2">
         <Image
@@ -65,11 +57,7 @@ export default function NavBar({ setToggledHamburguer }: Props) {
         </Link>
       </div>
       <div className="flex items-center gap-12 [@media(max-width:1028px)]:gap-4">
-        <Image
-          src={user}
-          alt="user"
-          className="[@media(max-width:1028px)]:w-[18px]"
-        />
+        <SessionLogger pageProps={pageProps} />
         <Image
           src={search}
           alt="search"

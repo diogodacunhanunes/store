@@ -1,11 +1,10 @@
+"use client";
+import { useShopContext } from "@/app/context/ShopContextProvider";
 import Link from "next/link";
 import React from "react";
 
-type Props = {
-  toggledHamburguer: boolean;
-};
-
-export default function SidePanel({ toggledHamburguer }: Props) {
+export default function SidePanel() {
+  const { toggledHamburguer } = useShopContext();
   return (
     <div
       className={`fixed z-40 top-20 left-0 h-screen w-60 bg-white p-4 transition-transform transform ${

@@ -3,6 +3,9 @@ import { Montserrat } from "next/font/google";
 import { Poppins } from "next/font/google";
 
 import "./globals.css";
+import NavBar from "./Components/Nav/NavBar";
+
+import { ShopContextProvider } from "./context/ShopContextProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
   icons: "../public/images/logo/Meubel House_Logos-05.svg",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -29,7 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} ${montserrat.className} `}>
-        {children}
+        <ShopContextProvider>
+          <NavBar />
+          {children}
+        </ShopContextProvider>
       </body>
     </html>
   );
