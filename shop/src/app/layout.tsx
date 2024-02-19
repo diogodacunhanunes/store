@@ -6,6 +6,8 @@ import "./globals.css";
 import NavBar from "./Components/Nav/NavBar";
 
 import { ShopContextProvider } from "./context/ShopContextProvider";
+import SessionProvider from "./context/SessionProvider";
+import { getServerSession } from "next-auth";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,12 +31,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+
   return (
     <html lang="en">
       <body className={`${poppins.className} ${montserrat.className} `}>
         <ShopContextProvider>
-          <NavBar />
-          {children}
+          <SessionProvider session={session}>
+            <NavBar />
+            {children}
+          </SessionProvider>
         </ShopContextProvider>
       </body>
     </html>

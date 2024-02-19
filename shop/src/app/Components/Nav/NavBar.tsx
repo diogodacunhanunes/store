@@ -12,7 +12,7 @@ import Link from "next/link";
 import HamburguerMenu from "./HamburguerMenu";
 import SessionLogger from "./SessionLogger";
 
-export default function NavBar({ pageProps }: any) {
+export default function NavBar() {
   return (
     <div className="flex justify-between px-5 py-5 z-50 font-montesrrat sticky top-0 bg-white shadow-md">
       <div className="hidden mob:inline">
@@ -57,7 +57,7 @@ export default function NavBar({ pageProps }: any) {
         </Link>
       </div>
       <div className="flex items-center gap-12 [@media(max-width:1028px)]:gap-4">
-        <SessionLogger pageProps={pageProps} />
+        <SessionLogger />
         <Image
           src={search}
           alt="search"
