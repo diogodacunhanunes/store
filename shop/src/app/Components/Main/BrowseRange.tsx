@@ -31,7 +31,7 @@ export default function BrowseRange() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </h5>
       </div>
-      <div className="flex justify-evenly gap-5 mob:gap-2 mob:px-4">
+      <div className="flex justify-evenly gap-5 px-2">
         <ImageAndText image={dinning_browse} text={"Dinning"} />
         <ImageAndText image={living_browse} text={"Living"} />
         <ImageAndText image={bedroom_browse} text={"Bedroom"} />

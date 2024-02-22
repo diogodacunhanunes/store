@@ -2,32 +2,39 @@
 import Image from "next/image";
 import React from "react";
 import user from "@/public/images/icons/icon_user.svg";
-import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import UserDropdownMenu from "./UserDropdownMenu";
+import { useSession } from "next-auth/react";
+import { userSignOut } from "@/app/utils/authFuncs";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/organisms/Avatar";
 
 export default function SessionLogger() {
-  const userSignIn = () => {
-    signIn("google");
-  };
-
-  const userSignOut = () => {
-    signOut();
-  };
-
   const { data: session } = useSession();
 
   return session?.user?.name ? (
-    <>
-      <span>Hello {session?.user?.name}</span>{" "}
-      <span className="underline cursor-pointer" onClick={() => userSignOut()}>
-        Sign Out
-      </span>
-    </>
+    <div className="flex gap-4">
+      <UserDropdownMenu signOut={userSignOut}>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>
+            <span className="bg-[#B88E2F] rounded-full px-3 py-1 text-white">
+              {session?.user?.name[0]}
+            </span>
+          </AvatarFallback>
+        </Avatar>
+      </UserDropdownMenu>
+    </div>
   ) : (
-    <Image
-      src={user}
-      alt="user"
-      className="[@media(max-width:1028px)]:w-[18px] cursor-pointer"
-      onClick={() => userSignIn()}
-    />
+    <Link href={"/login"}>
+      <Image
+        src={user}
+        alt="user"
+        className="[@media(max-width:1028px)]:w-[18px] cursor-pointer"
+      />
+    </Link>
   );
 }

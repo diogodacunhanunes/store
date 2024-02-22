@@ -3,11 +3,11 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="w-full border-t-[1px]">
-      <div className="w-full px-[15%] pt-20 flex flex-row">
+    <div className="w-full border-t-[1px] text-xs md:text-base lg:text-lg">
+      <div className="w-full px-[5%] pt-20 flex flex-row md:px-[15%]">
         <div className="w-[40%]  flex flex-col gap-10">
           <h1 className="font-bold text-[24px]">Furnitore.</h1>
-          <span className="font-300 text-[16px] text-[#9F9F9F]">
+          <span className="font-300  text-[#9F9F9F]">
             400 University Drive Suite <br /> 200 Coral Gables,
             <br /> FL 33134 USA
           </span>

@@ -18,14 +18,14 @@ export default function OurProducts() {
   };
 
   return (
-    <div className="flex flex-col w-full py-10">
+    <div className="flex flex-col py-10">
       <h1 className="text-[32px] font-bold self-center pb-12">Our Products</h1>
-      <div className="container px-[10%] self-center grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 [@media(max-width:775px)]:grid-cols-1 mob:px-[18%]">
+      <div className="self-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {products?.map((prod: ProductsType) => {
           return (
             <div
               key={`wrapper_${prod.id}`}
-              className="w-[255px] relative group"
+              className="w-[255px] relative group "
             >
               <div className="flex flex-col gap-3 justify-center items-center absolute top-0 left-0 w-full h-full bg-[#3A3A3A] bg-opacity-70 z-10 transition-opacity duration-300 opacity-0 group-hover:opacity-80">
                 <div className="flex justify-center items-center w-[70%] h-[48px] bg-white opacity-100 text-[#B88E2F] cursor-pointer">

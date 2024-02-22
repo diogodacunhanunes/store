@@ -8,6 +8,8 @@ import NavBar from "./Components/Nav/NavBar";
 import { ShopContextProvider } from "./context/ShopContextProvider";
 import SessionProvider from "./context/SessionProvider";
 import { getServerSession } from "next-auth";
+import Footer from "./Components/Main/Footer";
+import { Toaster } from "sonner";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -40,6 +42,8 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <NavBar />
             {children}
+            <Footer />
+            <Toaster position="top-right" richColors />
           </SessionProvider>
         </ShopContextProvider>
       </body>
