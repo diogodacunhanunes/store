@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Poppins } from "next/font/google";
-
 import "./globals.css";
-import NavBar from "./Components/Nav/NavBar";
-
-import { ShopContextProvider } from "./context/ShopContextProvider";
-import SessionProvider from "./context/SessionProvider";
-import { getServerSession } from "next-auth";
-import Footer from "./Components/Main/Footer";
-import { Toaster } from "sonner";
+import Providers from "./providers";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,19 +26,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
-
   return (
     <html lang="en">
       <body className={`${poppins.className} ${montserrat.className} `}>
-        <ShopContextProvider>
-          <SessionProvider session={session}>
-            <NavBar />
-            {children}
-            <Footer />
-            <Toaster position="top-right" richColors />
-          </SessionProvider>
-        </ShopContextProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

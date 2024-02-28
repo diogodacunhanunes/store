@@ -15,11 +15,15 @@ import {
 export default function SessionLogger() {
   const { data: session } = useSession();
 
+  console.log("session", session);
+
   return session?.user?.name ? (
     <div className="flex gap-4">
       <UserDropdownMenu signOut={userSignOut}>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage
+            src={session?.user?.image || "https://github.com/shadcn.png"}
+          />
           <AvatarFallback>
             <span className="bg-[#B88E2F] rounded-full px-3 py-1 text-white">
               {session?.user?.name[0]}

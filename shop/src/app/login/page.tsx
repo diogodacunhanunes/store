@@ -10,6 +10,7 @@ import check from "@/public/images/icons/check.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { userSignIn } from "../utils/authFuncs";
+import LoginGoogle from "../Components/Login";
 
 export default function Login() {
   const { data: session } = useSession();
@@ -25,21 +26,7 @@ export default function Login() {
   return (
     <div className="w-full h-full py-4 gap-4 self-center flex flex-col justify-center items-center lg:flex-row lg:py-20 lg:justify-center lg:items-center lg:gap-36 ">
       <div className="w-[70%] py-10 max-w-[520px] flex flex-col gap-4 lg:w-full">
-        <div>
-          <button
-            type="button"
-            className="text-white  w-full  bg-[#B88E2F] hover:bg-[#B88E2F]/90 focus:ring-4 focus:outline-none focus:ring-[#B88E2F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-start gap-4 dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-            onClick={() => userSignIn("google")}
-          >
-            <Image src={google} alt="google" width={20} />
-            Sign in with Google
-          </button>
-        </div>
-        <form className="flex flex-col gap-4">
-          <Input type="text" placeholder="Username" />
-          <Input type="password" placeholder="Password" />
-          <Button variant="default">Sign In</Button>
-        </form>
+        <LoginGoogle />
       </div>
       <div className="w-[70%] h-[1px] bg-gray-200 lg:w-[1px] lg:h-[250px]">
         &nbsp;

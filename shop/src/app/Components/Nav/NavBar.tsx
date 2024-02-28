@@ -38,7 +38,7 @@ export default function NavBar() {
         </Link>
 
         <Link
-          href={"/"}
+          href={"/products"}
           className="transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F]"
         >
           Shop
