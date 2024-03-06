@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../components/organisms/Dialog";
-import LoginGoogle from "@/app/Components/Login";
+import LoginGoogle from "@/app/Components/Login/LoginGoogle";
 
 export default function LoginModal({
   isOpen,

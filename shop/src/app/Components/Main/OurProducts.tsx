@@ -1,12 +1,11 @@
 "use client";
-import { products } from "@/db/rawData";
 import React from "react";
 import Link from "next/link";
 import Product from "../Organisms/Product";
 import LoginModal from "../../../components/dialogs/LoginModal";
 import { useShopContext } from "@/app/context/ShopContextProvider";
 
-export default function OurProducts() {
+export default function OurProducts({ products }: any) {
   type ProductsType = {
     id: number;
     name: string;
@@ -36,14 +35,12 @@ export default function OurProducts() {
           );
         })}
       </div>
-      <div className="flex justify-center items-center border-2 border-[#B88E2F] w-[18%] self-center text-[#B88E2F]  hover:text-white my-12 p-2 cursor-pointer transition duration-300 hover:bg-[#B88E2F]">
-        <Link
-          className="font-semibold text-[16px] transition-none"
-          href={"/products"}
-        >
-          Show More
-        </Link>
-      </div>
+      <Link
+        className="flex justify-center items-center border-2 border-[#B88E2F] w-[18%] self-center text-[#B88E2F]  hover:text-white my-12 p-2 cursor-pointer transition duration-300 hover:bg-[#B88E2F] font-semibold text-[16px] transition-none"
+        href={"/products"}
+      >
+        Show More
+      </Link>
       <LoginModal
         isOpen={isLoginModalOpen}
         setIsOpen={setIsLoginModalOpen}

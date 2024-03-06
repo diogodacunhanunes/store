@@ -1,20 +1,18 @@
 import React from "react";
-import Banner from "../Components/Organisms/Banner";
-import BrowseRange from "../Components/Main/BrowseRange";
-import OurProducts from "../Components/Main/OurProducts";
-import ShareHashtag from "../Components/Main/ShareHashtag";
-import SidePanel from "../Components/Main/SidePanel";
+import MainPage from "../Components/Main/MainPage";
 
-export default function MainPage() {
-  return (
-    <>
-      <SidePanel />
-      <div className="flex flex-col">
-        <Banner homepage />
-        <BrowseRange />
-        <OurProducts />
-        <ShareHashtag />
-      </div>
-    </>
+export default async function Main() {
+  const productsResp = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/products/main`,
+    {
+      headers: {
+        Accept: "application/json",
+        method: "GET",
+      },
+    }
   );
+
+  const products = await productsResp.json();
+
+  return <MainPage products={products} />;
 }

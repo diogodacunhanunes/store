@@ -1,3 +1,4 @@
+"use client";
 //images
 import logo from "@/public/images/logo/Meubel House_Logos-05.svg";
 import heart from "@/public/images/icons/icon_heart.svg";
@@ -11,8 +12,10 @@ import Link from "next/link";
 //components
 import HamburguerMenu from "./HamburguerMenu";
 import SessionLogger from "./SessionLogger";
+import { useShopContext } from "@/app/context/ShopContextProvider";
 
 export default function NavBar() {
+  const { shoppingCartNumItems } = useShopContext();
   return (
     <div className="flex justify-between px-5 py-5 z-50 font-montesrrat sticky top-0 bg-white shadow-md">
       <div className="hidden mob:inline">
@@ -68,11 +71,16 @@ export default function NavBar() {
           alt="heart"
           className="[@media(max-width:1028px)]:w-[18px]"
         />
-        <Image
-          src={shopping_cart}
-          alt="shopping_cart"
-          className="[@media(max-width:1028px)]:w-[18px]"
-        />
+        <div className="relative">
+          <Image
+            src={shopping_cart}
+            alt="shopping_cart"
+            className="[@media(max-width:1028px)]:w-[18px]"
+          />
+          <span className="absolute text-white rounded-full bg-red-500 text-[10px] right-[-10px] bottom-[-10px] px-[6px]">
+            {shoppingCartNumItems}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import banner_pic_home from "@/public/images/assets/scandinavian-interior-background.svg";
+import banner_pic_home from "@/public/images/assets/scandinavian-interior-background.png";
 import banner_pic_prod from "@/public/images/assets/products-banner.svg";
 
 export default function Banner({

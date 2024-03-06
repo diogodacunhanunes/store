@@ -11,24 +11,20 @@ import { Skeleton } from "../../components/organisms/Skeleton";
 import LoginModal from "../../components/dialogs/LoginModal";
 
 export default function Products() {
-  const {
-    itemRangeLower,
-    itemRangeUpper,
-    totalItems,
-    action,
-    setAction,
-    isLoginModalOpen,
-    setIsLoginModalOpen,
-  } = useShopContext();
+  const { action, setAction, isLoginModalOpen, setIsLoginModalOpen } =
+    useShopContext();
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalProds, setTotalProds] = useState(1);
 
   const { data: products, isLoading } = useQuery(
     ["products", currentPage],
     async () => {
-      const response = await fetch(`/api/products?page=${currentPage}`, {
+      const response = await fetch(`/api/products/shop?page=${currentPage}`, {
         method: "GET",
       });
       const data = await response.json();
+      setTotalProds(data.totalProds);
       return data.products;
     },
     {
@@ -53,7 +49,11 @@ export default function Products() {
             <Icon icon={"gridView"} />
             <Icon icon={"listView"} />
             <div className="h-9 bg-[#B88E2F] w-[1px]" />
-            <span className="text-lg align-baseline">{`Showing ${itemRangeLower} - ${itemRangeUpper} of ${totalItems}`}</span>
+            {isLoading ? (
+              <Skeleton className="h-8 w-[200px]" />
+            ) : (
+              <span className="text-lg align-baseline">{`Showing ${1} - ${15} of ${totalProds}`}</span>
+            )}
           </div>
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 px-[15%] sm:px-24 my-20">
@@ -78,6 +78,7 @@ export default function Products() {
             className="mb-20"
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            totalPages={Math.ceil(totalProds / 15)}
           />
         )}
       </div>

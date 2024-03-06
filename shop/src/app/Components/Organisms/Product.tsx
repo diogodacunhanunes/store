@@ -4,6 +4,7 @@ import Image from "next/image";
 import share from "@/public/images/icons/share.svg";
 import like from "@/public/images/icons/like.svg";
 import { useSession } from "next-auth/react";
+import { useShopContext } from "@/app/context/ShopContextProvider";
 
 export default function Product({
   prod,
@@ -24,7 +25,7 @@ export default function Product({
   setAction: (a: "like" | "share" | "add to cart") => void;
 }) {
   const { data: session } = useSession();
-
+  const { setShoppingCartNumItems } = useShopContext();
   return (
     <div key={`wrapper_${prod.id}`} className="w-[255px] relative">
       <div className="h-[270px] flex flex-col gap-3 justify-center items-center absolute top-0 left-0 w-full bg-[#3A3A3A] bg-opacity-70 z-10 transition-opacity duration-300 opacity-0 hover:opacity-80">
@@ -34,7 +35,9 @@ export default function Product({
             if (!session) {
               setAction("add to cart");
               setIsOpen(true);
+              return;
             }
+            setShoppingCartNumItems((prev: number) => prev + 1);
           }}
         >
           Add to cart
@@ -78,6 +81,8 @@ export default function Product({
       <div id="image_wrapper" className="relative z-0">
         <Image
           src={prod.image}
+          width={255}
+          height={270}
           className="relative w-[fit]"
           alt="product_image"
         />
@@ -87,8 +92,8 @@ export default function Product({
               prod.new ? "bg-[#2EC1AC]" : "bg-[#E97171]"
             }`}
           >
-            <span className="w-[30px] h-[30px] font-poppins text-[14px] leading-8 text-[#FFFFFF]">
-              {prod.new ? "New" : prod.discount}
+            <span className="w-[30px] h-[30px] font-poppins text-[14px] leading-8 text-[#FFFFFF] text-center">
+              {prod.new ? "New" : prod.discount + "%"}
             </span>
           </div>
         )}

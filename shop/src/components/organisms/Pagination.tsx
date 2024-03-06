@@ -1,7 +1,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -12,10 +11,12 @@ export default function PaginationUI({
   className,
   currentPage,
   setCurrentPage,
+  totalPages,
 }: {
   className?: string;
   currentPage: number;
   setCurrentPage: (page: number) => void;
+  totalPages: number;
 }) {
   return (
     <Pagination className={className}>
@@ -26,38 +27,34 @@ export default function PaginationUI({
             onClick={(e) => {
               e.preventDefault();
               setCurrentPage(currentPage !== 1 ? currentPage - 1 : 1);
+              window.scrollTo({ top: 500, behavior: "smooth" });
             }}
           />
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentPage(1);
-            }}
-          >
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentPage(2);
-            }}
-          >
-            2
-          </PaginationLink>
-        </PaginationItem>
+        {Array.from({ length: totalPages }).map((page, index) => (
+          <PaginationItem key={"page_" + index}>
+            <PaginationLink
+              href="#"
+              isActive={currentPage === index + 1}
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentPage(Number(index + 1));
+                window.scrollTo({ top: 500, behavior: "smooth" });
+              }}
+            >
+              {Number(index + 1)}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
         <PaginationItem>
           <PaginationNext
             href="#"
             onClick={(e) => {
               e.preventDefault();
               setCurrentPage(currentPage + 1);
+              window.scrollTo({ top: 500, behavior: "smooth" });
             }}
+            scroll
           />
         </PaginationItem>
       </PaginationContent>

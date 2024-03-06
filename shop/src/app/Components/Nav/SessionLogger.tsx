@@ -15,8 +15,6 @@ import {
 export default function SessionLogger() {
   const { data: session } = useSession();
 
-  console.log("session", session);
-
   return session?.user?.name ? (
     <div className="flex gap-4">
       <UserDropdownMenu signOut={userSignOut}>
