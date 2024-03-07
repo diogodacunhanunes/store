@@ -7,8 +7,6 @@ export default async function Main() {
 
   const url = `${baseUrl.replace(/\/$/, "")}${endpoint}`;
 
-  console.log("url", url);
-
   const productsResp = await fetch(url, {
     method: "GET",
     headers: {
@@ -16,9 +14,9 @@ export default async function Main() {
     },
   });
 
-  console.log("productsResp", await productsResp.json());
+  console.log("productsResp", productsResp);
 
-  const products = await productsResp.json();
+  const products = productsResp ? await productsResp.json() : [];
 
   return <MainPage products={products} />;
 }
