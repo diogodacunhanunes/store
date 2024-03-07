@@ -16,6 +16,8 @@ export default async function Main() {
     },
   });
 
+  console.log("productsResp", productsResp);
+
   const products = await productsResp.json();
 
   return <MainPage products={products} />;
