@@ -30,7 +30,7 @@ export default function NavBar() {
       <div className="hidden mob:inline">
         <HamburguerMenu size={20} color="#B88E2F" />
       </div>
-      <div className="flex items-center gap-2">
+      <Link href={"/"} className="cursor-pointer flex items-center gap-2">
         <Image
           src={logo}
           alt="logo"
@@ -40,7 +40,7 @@ export default function NavBar() {
         <span className="font-bold text-3xl [@media(max-width:1028px)]:text-xl">
           Furnitore
         </span>
-      </div>
+      </Link>
       <div className="flex items-end gap-24 [@media(max-width:1028px)]:text-[12px] [@media(max-width:1028px)]:gap-12 [@media(max-width:640px)]:hidden">
         <Link
           href={"/"}
