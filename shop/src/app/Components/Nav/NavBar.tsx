@@ -4,6 +4,8 @@ import logo from "@/public/images/logo/Meubel House_Logos-05.svg";
 import heart from "@/public/images/icons/icon_heart.svg";
 import search from "@/public/images/icons/icon_search.svg";
 import shopping_cart from "@/public/images/icons/icon_shopping_cart.svg";
+import stylish_coffee_chair from "@/public/images/assets/respira.png";
+import leviosa from "@/public/images/assets/lolito.png";
 
 //next components
 import Image from "next/image";
@@ -13,9 +15,16 @@ import Link from "next/link";
 import HamburguerMenu from "./HamburguerMenu";
 import SessionLogger from "./SessionLogger";
 import { useShopContext } from "@/app/context/ShopContextProvider";
+import ShoppingCartSide from "./ShoppingCartSide";
 
 export default function NavBar() {
-  const { shoppingCartNumItems } = useShopContext();
+  const {
+    shoppingCartNumItems,
+    shoppingCartProducts,
+    setShoppingCartProducts,
+    isShoppingCartOpen,
+    setIsShoppingCartOpen,
+  } = useShopContext();
   return (
     <div className="flex justify-between px-5 py-5 z-50 font-montesrrat sticky top-0 bg-white shadow-md">
       <div className="hidden mob:inline">
@@ -71,16 +80,25 @@ export default function NavBar() {
           alt="heart"
           className="[@media(max-width:1028px)]:w-[18px]"
         />
-        <div className="relative">
-          <Image
-            src={shopping_cart}
-            alt="shopping_cart"
-            className="[@media(max-width:1028px)]:w-[18px]"
-          />
-          <span className="absolute text-white rounded-full bg-red-500 text-[10px] right-[-10px] bottom-[-10px] px-[6px]">
-            {shoppingCartNumItems}
-          </span>
-        </div>
+        <ShoppingCartSide
+          trigger={
+            <div className="relative">
+              <Image
+                src={shopping_cart}
+                alt="shopping_cart"
+                className="[@media(max-width:1028px)]:w-[18px]"
+              />
+              <span className="absolute text-white rounded-full bg-red-500 text-[10px] right-[-10px] bottom-[-10px] px-[6px]">
+                {shoppingCartNumItems}
+              </span>
+            </div>
+          }
+          title="Shopping Cart"
+          shoppingCartItems={shoppingCartProducts}
+          setShoppingCartProducts={setShoppingCartProducts}
+          isOpen={isShoppingCartOpen}
+          onOpenChange={() => setIsShoppingCartOpen((prev: boolean) => !prev)}
+        />
       </div>
     </div>
   );

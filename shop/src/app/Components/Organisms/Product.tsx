@@ -25,7 +25,7 @@ export default function Product({
   setAction: (a: "like" | "share" | "add to cart") => void;
 }) {
   const { data: session } = useSession();
-  const { setShoppingCartNumItems } = useShopContext();
+  const { setShoppingCartProducts, setIsShoppingCartOpen } = useShopContext();
   return (
     <div key={`wrapper_${prod.id}`} className="w-[255px] relative">
       <div className="h-[270px] flex flex-col gap-3 justify-center items-center absolute top-0 left-0 w-full bg-[#3A3A3A] bg-opacity-70 z-10 transition-opacity duration-300 opacity-0 hover:opacity-80">
@@ -37,7 +37,14 @@ export default function Product({
               setIsOpen(true);
               return;
             }
-            setShoppingCartNumItems((prev: number) => prev + 1);
+            setShoppingCartProducts((prev: any) => {
+              if (prev?.find((p: any) => p.id === prod.id))
+                return prev?.map((p: any) =>
+                  p.id === prod.id ? { ...p, quantity: p.quantity + 1 } : p
+                );
+              return [...prev, { ...prod, quantity: 1 }];
+            });
+            setIsShoppingCartOpen(true);
           }}
         >
           Add to cart

@@ -14,8 +14,6 @@ export default async function Main() {
     },
   });
 
-  console.log("productsResp", productsResp);
-
   const products = productsResp ? await productsResp.json() : [];
 
   return <MainPage products={products} />;
