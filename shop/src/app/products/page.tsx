@@ -29,7 +29,7 @@ export default function Products() {
     },
     {
       enabled: !!currentPage,
-    }
+    },
   );
 
   const Title = () => (
@@ -58,7 +58,7 @@ export default function Products() {
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 px-[15%] sm:px-24 my-20">
           {isLoading
-            ? Array.from({ length: 15 }).map((prod, index) => (
+            ? Array.from({ length: 15 }).map((_, index) => (
                 <SkeletonCard key={`prod_skeleton_${index}`} />
               ))
             : products?.map((product: any) => (

@@ -1,20 +1,9 @@
 import React from "react";
 import MainPage from "../Components/Main/MainPage";
+import { prisma } from "@/lib/prisma";
 
 export default async function Main() {
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000/"; // Default to local URL if NEXTAUTH_URL is not set
-  const endpoint = "/api/products/main";
-
-  const url = `${baseUrl.replace(/\/$/, "")}${endpoint}`;
-
-  const productsResp = await fetch(url, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  const products = productsResp ? await productsResp.json() : [];
+  const products = await prisma.product.findMany({ take: 8 });
 
   return <MainPage products={products} />;
 }
