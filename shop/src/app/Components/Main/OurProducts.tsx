@@ -5,18 +5,22 @@ import Product from "../Organisms/Product";
 import LoginModal from "../../../components/dialogs/LoginModal";
 import { useShopContext } from "@/app/context/ShopContextProvider";
 
-export default function OurProducts({ products }: any) {
-  type ProductsType = {
-    id: number;
-    name: string;
-    category: string;
-    price: string;
-    oldPrice: string;
-    discount: string;
-    image: string;
-    new: boolean;
-  };
+type ProductsType = {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  oldPrice: string;
+  discount: string;
+  image: string;
+  new: boolean;
+};
 
+export default function OurProducts({
+  products,
+}: {
+  products: ProductsType[];
+}) {
   const { action, setAction, isLoginModalOpen, setIsLoginModalOpen } =
     useShopContext();
 
@@ -37,14 +41,14 @@ export default function OurProducts({ products }: any) {
       </div>
       <Link
         className="flex justify-center items-center border-2 border-[#B88E2F] w-[18%] self-center text-[#B88E2F]  hover:text-white my-12 p-2 cursor-pointer transition duration-300 hover:bg-[#B88E2F] font-semibold text-[16px] transition-none"
-        href={"/products"}
+        href="/products"
       >
         Show More
       </Link>
       <LoginModal
+        action={action}
         isOpen={isLoginModalOpen}
         setIsOpen={setIsLoginModalOpen}
-        action={action}
       />
     </div>
   );
