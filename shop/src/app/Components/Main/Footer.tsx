@@ -20,56 +20,56 @@ export default function Footer() {
           </div>
           <div className="text-[#000000] text-300 grid grid-cols-3">
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Home
             </Link>
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Payment Options
             </Link>
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Subscribe
             </Link>
           </div>
           <div className="text-[#000000] text-300 grid grid-cols-3">
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Shop
             </Link>
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Returns
             </Link>
           </div>
           <div className="text-[#000000] text-300 grid grid-cols-3">
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               About
             </Link>
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Privacy Policies
             </Link>
           </div>
           <div className="text-[#000000] text-300 grid grid-cols-3">
             <Link
-              href={"/"}
               className="w-fit transition duration-350 border-b-2 border-transparent hover:border-[#B88E2F] cursor-pointer"
+              href="/"
             >
               Contact
             </Link>
@@ -78,7 +78,9 @@ export default function Footer() {
       </div>
       <div className="w-full border-t-[1px] h-1 mt-12" />
       <div className="w-full px-[15%] pb-[50px] my-[50px]">
-        <span className="text-[16px]">2023 Furnitore. All rights reverved</span>
+        <span className="text-[16px]">
+          &copy; {new Date()?.getFullYear()} Furnitore. All rights reverved
+        </span>
       </div>
     </div>
   );

@@ -4,20 +4,16 @@ import React from "react";
 
 //context
 import { useShopContext } from "../../context/ShopContextProvider";
+import { HamburguerProps } from "./types";
 
-interface Props {
-  size: number;
-  color: string;
-}
-
-export default function HamburguerMenu({ size, color }: Props) {
+export default function HamburguerMenu({ size, color }: HamburguerProps) {
   const { setToggledHamburguer } = useShopContext();
 
   return (
     <Hamburger
-      size={size}
       color={color}
       onToggle={() => setToggledHamburguer((prev: boolean) => !prev)}
+      size={size}
     />
   );
 }

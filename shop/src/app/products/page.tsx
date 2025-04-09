@@ -1,53 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import { ProductType } from "../Components/Organisms/types";
 import Banner from "../Components/Organisms/Banner";
 import Icon from "../Components/Organisms/Icon";
 import { useShopContext } from "../context/ShopContextProvider";
 import Product from "../Components/Organisms/Product";
 import PaginationUI from "../../components/organisms/Pagination";
-import { useQuery } from "react-query";
+import { useProducts } from "../hooks/useProducts";
 import { SkeletonCard } from "../../components/organisms/SkeletonCard";
 import { Skeleton } from "../../components/organisms/Skeleton";
 import LoginModal from "../../components/dialogs/LoginModal";
 
-export default function Products() {
-  const { action, setAction, isLoginModalOpen, setIsLoginModalOpen } =
-    useShopContext();
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalProds, setTotalProds] = useState(1);
-
-  const { data: products, isLoading } = useQuery(
-    ["products", currentPage],
-    async () => {
-      const response = await fetch(`/api/products/shop?page=${currentPage}`, {
-        method: "GET",
-      });
-      const data = await response.json();
-      setTotalProds(data.totalProds);
-      return data.products;
-    },
-    {
-      enabled: !!currentPage,
-    },
-  );
-
-  const Title = () => (
+function Title() {
+  return (
     <div className="flex flex-col items-center justify-center gap-3">
       <h1 className="text-4xl font-bold">Products</h1>
       <span className="text-lg font-bold">Home {` > `}Shop</span>
     </div>
   );
+}
+
+export default function Products() {
+  const { action, setAction, isLoginModalOpen, setIsLoginModalOpen } =
+    useShopContext();
+
+  const { products, isLoading, currentPage, setCurrentPage, totalProds } =
+    useProducts();
 
   return (
     <>
       <div>
-        <Banner products title={<Title />} />
+        <Banner title={<Title />} />
         <div className="w-full h-[100px] bg-[#F9F1E7] flex justify-center items-center">
           <div className="w-full flex gap-8 justify-start items-center mx-32">
-            <Icon label={true} icon={"filter"} customStyles="text-lg" />
-            <Icon icon={"gridView"} />
-            <Icon icon={"listView"} />
+            <Icon customStyles="text-lg" icon="filter" label={true} />
+            <Icon icon="gridView" />
+            <Icon icon="listView" />
             <div className="h-9 bg-[#B88E2F] w-[1px]" />
             {isLoading ? (
               <Skeleton className="h-8 w-[200px]" />
@@ -61,12 +49,12 @@ export default function Products() {
             ? Array.from({ length: 15 }).map((_, index) => (
                 <SkeletonCard key={`prod_skeleton_${index}`} />
               ))
-            : products?.map((product: any) => (
-                <div key={`wrapper_${product.id}`} className="w-fit">
+            : products?.map((product: ProductType) => (
+                <div className="w-fit" key={`wrapper_${product.id}`}>
                   <Product
                     prod={product}
-                    setIsOpen={setIsLoginModalOpen}
                     setAction={setAction}
+                    setIsOpen={setIsLoginModalOpen}
                   />
                 </div>
               ))}
@@ -83,9 +71,9 @@ export default function Products() {
         )}
       </div>
       <LoginModal
+        action={action}
         isOpen={isLoginModalOpen}
         setIsOpen={setIsLoginModalOpen}
-        action={action}
       />
     </>
   );

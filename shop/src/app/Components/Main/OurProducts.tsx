@@ -4,17 +4,7 @@ import Link from "next/link";
 import Product from "../Organisms/Product";
 import LoginModal from "../../../components/dialogs/LoginModal";
 import { useShopContext } from "@/app/context/ShopContextProvider";
-
-type ProductsType = {
-  id: number;
-  name: string;
-  category: string;
-  price: string;
-  oldPrice: string;
-  discount: string;
-  image: string;
-  new: boolean;
-};
+import { ProductsType } from "./types";
 
 export default function OurProducts({
   products,

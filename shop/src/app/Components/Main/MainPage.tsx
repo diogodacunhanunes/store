@@ -4,8 +4,9 @@ import BrowseRange from "../../Components/Main/BrowseRange";
 import OurProducts from "../../Components/Main/OurProducts";
 import ShareHashtag from "../../Components/Main/ShareHashtag";
 import SidePanel from "../../Components/Main/SidePanel";
+import { ProductsType } from "./types";
 
-export default function MainPage({ products }: any) {
+export default function MainPage({ products }: { products: ProductsType[] }) {
   return (
     <>
       <SidePanel />

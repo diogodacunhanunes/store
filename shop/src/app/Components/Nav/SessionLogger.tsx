@@ -14,6 +14,9 @@ import {
 
 export default function SessionLogger() {
   const { data: session } = useSession();
+  const initial = session?.user?.name
+    ? session?.user?.name.charAt(0).toUpperCase()
+    : "";
 
   return session?.user?.name ? (
     <div className="flex gap-4">
@@ -24,18 +27,18 @@ export default function SessionLogger() {
           />
           <AvatarFallback>
             <span className="bg-[#B88E2F] rounded-full px-3 py-1 text-white">
-              {session?.user?.name[0]}
+              {initial}
             </span>
           </AvatarFallback>
         </Avatar>
       </UserDropdownMenu>
     </div>
   ) : (
-    <Link href={"/login"}>
+    <Link href="/login">
       <Image
-        src={user}
         alt="user"
         className="[@media(max-width:1028px)]:w-[18px] cursor-pointer"
+        src={user}
       />
     </Link>
   );

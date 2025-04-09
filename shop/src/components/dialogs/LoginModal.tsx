@@ -19,7 +19,7 @@ export default function LoginModal({
   action: "like" | "share" | "add to cart" | "";
 }) {
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Please Login</DialogTitle>
