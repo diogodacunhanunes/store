@@ -12,17 +12,17 @@ export default function SidePanel() {
       }`}
     >
       <div className="flex flex-col gap-5 pt-5">
-        <Link href={"/"}>
+        <Link href="/">
           <span className="font-poppins">Home</span>
         </Link>
         <div className="border-b-[1px] h-1 w-full border-[#B88E2F]" />
-        <Link href={"/"}>Shop</Link>
+        <Link href="/">Shop</Link>
         <div className="border-b-[1px] h-1 w-full border-[#B88E2F]" />
 
-        <Link href={"/"}>About</Link>
+        <Link href="/">About</Link>
         <div className="border-b-[1px] h-1 w-full border-[#B88E2F]" />
 
-        <Link href={"/"}>Contact</Link>
+        <Link href="/">Contact</Link>
         <div className="border-b-[1px] h-1 w-full border-[#B88E2F]" />
       </div>
     </div>

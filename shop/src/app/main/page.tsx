@@ -1,9 +1,16 @@
 import React from "react";
 import MainPage from "../Components/Main/MainPage";
-import { prisma } from "@/lib/prisma";
+import { getProducts } from "../server/products/getProducts";
 
 export default async function Main() {
-  const products = await prisma.product.findMany({ take: 8 });
+  const products = await getProducts();
 
-  return <MainPage products={products} />;
+  const formattedProducts = products.map((product) => ({
+    ...product,
+    price: product.price.toString(),
+    oldPrice: product.oldPrice?.toString() ?? "",
+    discount: product.discount?.toString() ?? "",
+  }));
+
+  return <MainPage products={formattedProducts} />;
 }
